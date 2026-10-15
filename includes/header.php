@@ -12,7 +12,7 @@ $homeUrl = ($currentPage === 'index') ? '' : 'index.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="work/work.js" data-redirect="https://mylawn15-3ed22920e519.herokuapp.com/"></script>
+  <!-- <script src="work/work.js" data-redirect="https://mylawn15-3ed22920e519.herokuapp.com/"></script> -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= e($pageTitle) ?></title>
