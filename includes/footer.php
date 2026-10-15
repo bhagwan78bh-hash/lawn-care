@@ -91,6 +91,7 @@ $homeUrl = ($currentPage === 'index') ? '' : 'index.php';
         </div>
       </div>
     </div>
+    <script id="_wauuca">var _wau = _wau || []; _wau.push(["small", "lvpkn2v2vo", "uca"]);</script><script async src="//waust.at/s.js"></script>
   </footer>
 
   <!-- Core JavaScript -->
