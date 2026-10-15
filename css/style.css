@@ -1,0 +1,1953 @@
+/* ==========================================================================
+   SummerLawnCare - Modern Design System & Stylesheet
+   Brand: summerlawncare
+   Focus: Summer Lawn Care Tips & Turf Resilience
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Variables & Design Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Color Palette */
+  --primary-50: #ecfdf5;
+  --primary-100: #d1fae5;
+  --primary-200: #a7f3d0;
+  --primary-300: #6ee7b7;
+  --primary-400: #34d399;
+  --primary-500: #10b981;
+  --primary-600: #059669;
+  --primary-700: #047857;
+  --primary-800: #065f46;
+  --primary-900: #064e3b;
+  --primary-950: #022c22;
+
+  /* Accent Sun & Heat Alert Colors */
+  --accent-amber-50: #fffbeb;
+  --accent-amber-100: #fef3c7;
+  --accent-amber-500: #f59e0b;
+  --accent-amber-600: #d97706;
+  --accent-amber-700: #b45309;
+  --accent-sun: #ffaa00;
+
+  /* Neutral Slate Palette */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  /* Surfaces & Backgrounds */
+  --bg-page: #fbfdfa;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f3f7f2;
+  --bg-surface-tint: #ecf8f1;
+  --bg-dark-forest: #06261c;
+  --bg-dark-card: #0c3327;
+
+  /* Text Colors */
+  --text-main: #13241b;
+  --text-secondary: #42554a;
+  --text-muted: #6b7f73;
+  --text-white: #ffffff;
+  --text-on-dark: #e2ece6;
+
+  /* Typography */
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing & Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(13, 138, 85, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(6, 42, 28, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 28px rgba(6, 42, 28, 0.12), 0 4px 10px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 40px rgba(6, 42, 28, 0.16), 0 6px 12px rgba(0, 0, 0, 0.06);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Base Setup
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 86px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  overflow-x: hidden;
+}
+
+img, svg, picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout & Containers
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.container-narrow {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+/* Section Header Shared */
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+}
+
+.section-header.text-left {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary-800);
+  background-color: var(--primary-100);
+  border: 1px solid var(--primary-300);
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.badge-tag.badge-amber {
+  color: var(--accent-amber-700);
+  background-color: var(--accent-amber-100);
+  border-color: #fcd34d;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--primary-950);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.85rem;
+  }
+}
+
+.section-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+  transition: all var(--transition-normal);
+}
+
+.site-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 20px rgba(6, 42, 28, 0.08);
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--primary-900);
+  letter-spacing: -0.02em;
+}
+
+.brand-logo .logo-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+}
+
+.brand-highlight {
+  color: var(--primary-600);
+}
+
+.brand-sun {
+  color: var(--accent-amber-600);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--slate-700);
+  position: relative;
+  padding: 0.4rem 0;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary-700);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary-600);
+  transition: width var(--transition-normal);
+  border-radius: 2px;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+  transition: all var(--transition-normal);
+}
+
+.nav-cta-btn::after {
+  display: none !important;
+}
+
+.nav-cta-btn:hover {
+  background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--primary-900);
+}
+
+@media (max-width: 991px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+    gap: 1.25rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--slate-200);
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+  }
+
+  .nav-links.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .nav-cta-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+    padding: 0.85rem 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  background: linear-gradient(135deg, #04251a 0%, #063927 50%, #0b4a34 100%);
+  color: #ffffff;
+  padding: 5.5rem 0 6rem;
+  overflow: hidden;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.22) 0%, transparent 40%),
+    radial-gradient(circle at 15% 80%, rgba(16, 185, 129, 0.25) 0%, transparent 50%),
+    linear-gradient(to right, rgba(4, 37, 26, 0.95) 0%, rgba(4, 37, 26, 0.75) 55%, rgba(4, 37, 26, 0.4) 100%);
+  z-index: 1;
+}
+
+.hero-bg-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.65;
+  filter: saturate(1.15) brightness(0.9);
+  z-index: 0;
+}
+
+@media (max-width: 991px) {
+  .hero-bg-img {
+    width: 100%;
+    opacity: 0.35;
+  }
+  .hero-bg-overlay {
+    background: linear-gradient(to bottom, rgba(4, 37, 26, 0.92) 0%, rgba(4, 37, 26, 0.96) 100%);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fef08a;
+  margin-bottom: 1.5rem;
+}
+
+.hero-pill-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-amber-500);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-amber-500);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 3.25rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title-highlight {
+  background: linear-gradient(90deg, #34d399 0%, #a7f3d0 60%, #fef08a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.35rem;
+  }
+}
+
+.hero-lead {
+  font-size: 1.2rem;
+  color: #d1fae5;
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
+}
+
+/* Call to Action Buttons (Links Only - No Form!) */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.95rem 2rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  transition: all var(--transition-normal);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-400) 0%, var(--primary-500) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.95rem 1.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-normal);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/* Quick Stat Badges Under Hero */
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 600px) {
+  .hero-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fef08a;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #a7f3d0;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   6. Summer Heat Alert Banner
+   -------------------------------------------------------------------------- */
+.heat-alert-bar {
+  background: linear-gradient(90deg, #78350f 0%, #92400e 50%, #b45309 100%);
+  color: #fef3c7;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(254, 243, 199, 0.2);
+}
+
+.alert-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.alert-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: #fde047;
+}
+
+.alert-link {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+.alert-link:hover {
+  color: #fef08a;
+}
+
+/* --------------------------------------------------------------------------
+   7. Core Summer Lawn Care Pillars (6 Key Tips)
+   -------------------------------------------------------------------------- */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 991px) {
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pillar-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 1.85rem;
+  position: relative;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+
+.pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-300);
+}
+
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-500), var(--primary-300));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.pillar-card:hover::before {
+  opacity: 1;
+}
+
+.pillar-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--primary-100);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.pillar-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--primary-50);
+  color: var(--primary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--primary-200);
+  transition: all var(--transition-normal);
+}
+
+.pillar-card:hover .pillar-icon-box {
+  background: var(--primary-600);
+  color: #ffffff;
+  border-color: var(--primary-600);
+  transform: scale(1.08);
+}
+
+.pillar-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-950);
+  margin-bottom: 0.85rem;
+  line-height: 1.35;
+}
+
+.pillar-text {
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.pillar-rule-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--bg-surface-tint);
+  border: 1px solid var(--primary-200);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary-800);
+}
+
+/* --------------------------------------------------------------------------
+   8. Feature Highlights (Mowing & Irrigation Deep Dive)
+   -------------------------------------------------------------------------- */
+.feature-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .feature-split {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .feature-split.reverse-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.feature-media {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.feature-img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.feature-media:hover .feature-img {
+  transform: scale(1.03);
+}
+
+.feature-media-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.75rem;
+  background: linear-gradient(to top, rgba(6, 42, 28, 0.95) 0%, rgba(6, 42, 28, 0.4) 70%, transparent 100%);
+  color: #ffffff;
+}
+
+.feature-media-badge {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fef08a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.feature-media-caption {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.feature-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.check-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.checklist-text h4 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-950);
+  margin-bottom: 0.2rem;
+}
+
+.checklist-text p {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   9. Interactive Summer Lawn Watering Calculator (Form-free!)
+   -------------------------------------------------------------------------- */
+.calculator-card {
+  background: linear-gradient(135deg, #062a1c 0%, #0c3b29 100%);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem;
+  color: #ffffff;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .calculator-card {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.calc-bg-glow {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .calc-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.calc-control-group {
+  margin-bottom: 1.75rem;
+}
+
+.calc-label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #a7f3d0;
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.calc-chip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.calc-chip:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.calc-chip.active {
+  background: var(--primary-500);
+  border-color: var(--primary-400);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.range-slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.range-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.range-val-badge {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fef08a;
+}
+
+.calc-range-slider {
+  width: 100%;
+  accent-color: var(--primary-500);
+  cursor: pointer;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* Calculator Result Box */
+.calc-result-box {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.calc-result-tag {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fef08a;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.calc-output-big {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.calc-output-unit {
+  font-size: 1rem;
+  color: #a7f3d0;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.calc-metric-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: left;
+}
+
+.calc-sub-metric strong {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.calc-sub-metric span {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.calc-note {
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+  color: #a7f3d0;
+  font-style: italic;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   10. Warm-Season vs. Cool-Season Summer Turf Matrix
+   -------------------------------------------------------------------------- */
+.turf-matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 860px) {
+  .turf-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.turf-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--slate-200);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.turf-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.turf-card-header {
+  padding: 1.85rem 2rem;
+  color: #ffffff;
+  position: relative;
+}
+
+.turf-card-header.warm-turf {
+  background: linear-gradient(135deg, #15803d 0%, #065f46 100%);
+}
+
+.turf-card-header.cool-turf {
+  background: linear-gradient(135deg, #0369a1 0%, #0f172a 100%);
+}
+
+.turf-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.turf-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.turf-grasses {
+  font-size: 0.92rem;
+  opacity: 0.9;
+}
+
+.turf-card-body {
+  padding: 2rem;
+}
+
+.turf-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.turf-spec-table tr {
+  border-bottom: 1px solid var(--slate-100);
+}
+
+.turf-spec-table tr:last-child {
+  border-bottom: none;
+}
+
+.turf-spec-table th {
+  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--slate-500);
+  padding: 0.85rem 0;
+  width: 36%;
+}
+
+.turf-spec-table td {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--primary-950);
+  padding: 0.85rem 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. 3-Month Summer Calendar (Tabs)
+   -------------------------------------------------------------------------- */
+.calendar-wrapper {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--slate-200);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.calendar-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: var(--slate-50);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.calendar-tab-btn {
+  background: none;
+  border: none;
+  padding: 1.35rem 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--slate-600);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.calendar-tab-btn .tab-sub {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--slate-400);
+}
+
+.calendar-tab-btn:hover {
+  background-color: #ffffff;
+  color: var(--primary-700);
+}
+
+.calendar-tab-btn.active {
+  background-color: #ffffff;
+  color: var(--primary-700);
+}
+
+.calendar-tab-btn.active .tab-sub {
+  color: var(--primary-600);
+}
+
+.calendar-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--primary-600);
+}
+
+@media (max-width: 600px) {
+  .calendar-tabs {
+    grid-template-columns: 1fr;
+  }
+  .calendar-tab-btn {
+    border-bottom: 1px solid var(--slate-200);
+  }
+}
+
+.calendar-tab-pane {
+  padding: 3rem 2.5rem;
+  display: none;
+}
+
+.calendar-tab-pane.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.calendar-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 860px) {
+  .calendar-step-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.cal-step {
+  border-left: 3px solid var(--primary-500);
+  padding-left: 1.25rem;
+}
+
+.cal-step-phase {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-700);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.cal-step-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-950);
+  margin-bottom: 0.5rem;
+}
+
+.cal-step-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   12. Mistakes vs. Pro Solutions Checklist
+   -------------------------------------------------------------------------- */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 860px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-col {
+  border-radius: var(--radius-xl);
+  padding: 2.25rem;
+  border: 1px solid;
+}
+
+.comparison-col.dont-col {
+  background-color: #fff5f5;
+  border-color: #fecaca;
+}
+
+.comparison-col.do-col {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.comparison-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.comparison-header-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.dont-col .comparison-header-icon {
+  background-color: #ef4444;
+}
+
+.do-col .comparison-header-icon {
+  background-color: #10b981;
+}
+
+.comparison-header-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.dont-col .comparison-header-title {
+  color: #991b1b;
+}
+
+.do-col .comparison-header-title {
+  color: #065f46;
+}
+
+.comp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.comp-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.comp-symbol {
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.dont-col .comp-symbol {
+  color: #dc2626;
+}
+
+.do-col .comp-symbol {
+  color: #059669;
+}
+
+.comp-body strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: var(--primary-950);
+}
+
+.comp-body p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   13. Summer Lawn FAQ Accordion (Native <details name="faq">)
+   -------------------------------------------------------------------------- */
+.faq-accordion-group {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-disclosure {
+  background: var(--bg-surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.faq-disclosure[open] {
+  border-color: var(--primary-400);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-summary {
+  list-style: none;
+  padding: 1.35rem 1.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-950);
+  user-select: none;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-summary:hover {
+  color: var(--primary-700);
+  background-color: var(--bg-surface-tint);
+}
+
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--primary-600);
+  transition: transform var(--transition-normal);
+}
+
+.faq-disclosure[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-body {
+  padding: 0 1.75rem 1.5rem;
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  border-top: 1px solid transparent;
+}
+
+.faq-disclosure[open] .faq-body {
+  border-color: var(--slate-100);
+  padding-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   14. Bottom Call To Action Banner (Direct link to Contact Page - NO FORM!)
+   -------------------------------------------------------------------------- */
+.cta-banner-section {
+  background: linear-gradient(135deg, var(--primary-900) 0%, #032b1e 100%);
+  color: #ffffff;
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner-card {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-banner-card .section-title {
+  color: #ffffff;
+}
+
+.cta-banner-card .section-desc {
+  color: #d1fae5;
+  margin-bottom: 2.25rem;
+}
+
+.cta-button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   15. Dedicated Contact Page Styles
+   -------------------------------------------------------------------------- */
+.page-hero {
+  background: linear-gradient(135deg, #062a1c 0%, #0a422d 100%);
+  color: #ffffff;
+  padding: 4rem 0 3.5rem;
+  text-align: center;
+}
+
+.page-hero-title {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.page-hero-desc {
+  font-size: 1.15rem;
+  color: #d1fae5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: #a7f3d0;
+  margin-bottom: 1rem;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.contact-info-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.contact-info-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-950);
+  margin-bottom: 0.75rem;
+}
+
+.contact-info-desc {
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.info-points {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.info-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.info-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--primary-50);
+  color: var(--primary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--primary-200);
+}
+
+.info-detail strong {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--primary-950);
+}
+
+.info-detail p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.guarantee-box {
+  background: var(--bg-surface-tint);
+  border: 1px dashed var(--primary-400);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.guarantee-box svg {
+  color: var(--primary-700);
+  flex-shrink: 0;
+}
+
+.guarantee-box p {
+  font-size: 0.88rem;
+  color: var(--primary-900);
+  font-weight: 600;
+}
+
+/* Form Container on Contact Page */
+.contact-form-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-xl);
+  padding: 2.75rem;
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 600px) {
+  .contact-form-card {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+.form-group-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .form-group-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--slate-700);
+}
+
+.form-label .required {
+  color: #dc2626;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  font-size: 0.96rem;
+  color: var(--slate-800);
+  background-color: var(--bg-surface);
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+
+textarea.form-control {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 1.25rem 0 1.75rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.form-checkbox-group input {
+  margin-top: 0.25rem;
+  accent-color: var(--primary-600);
+}
+
+.form-alert-feedback {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  display: none;
+  font-size: 0.94rem;
+  font-weight: 500;
+}
+
+.form-alert-feedback.success {
+  display: block;
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.form-alert-feedback.error {
+  display: block;
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+/* --------------------------------------------------------------------------
+   16. Legal Pages (Terms & Privacy)
+   -------------------------------------------------------------------------- */
+.legal-content-wrap {
+  background: var(--bg-surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-sm);
+  margin-top: -2rem;
+  position: relative;
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .legal-content-wrap {
+    padding: 2rem 1.5rem;
+    margin-top: -1rem;
+  }
+}
+
+.legal-header {
+  border-bottom: 1px solid var(--slate-200);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.25rem;
+}
+
+.legal-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.88rem;
+  color: var(--slate-500);
+  margin-top: 0.5rem;
+}
+
+.legal-body h2 {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--primary-950);
+  margin: 2.25rem 0 0.85rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--slate-100);
+}
+
+.legal-body h2:first-of-type {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.legal-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--slate-800);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.legal-body p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.legal-body ul, .legal-body ol {
+  margin: 0 0 1.25rem 1.5rem;
+}
+
+.legal-body li {
+  list-style: disc;
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.legal-callout {
+  background-color: var(--bg-surface-tint);
+  border-left: 4px solid var(--primary-500);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: 1.5rem 0;
+}
+
+.legal-callout p {
+  margin-bottom: 0;
+  font-size: 0.94rem;
+  color: var(--primary-900);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   17. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--bg-dark-forest);
+  color: var(--slate-300);
+  padding: 4.5rem 0 2rem;
+  border-top: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (max-width: 991px) {
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-brand .brand-logo {
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.footer-tagline {
+  font-size: 0.95rem;
+  color: #a7f3d0;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.footer-col-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-nav-list a {
+  font-size: 0.92rem;
+  color: var(--slate-300);
+  transition: all var(--transition-fast);
+}
+
+.footer-nav-list a:hover {
+  color: #34d399;
+  transform: translateX(3px);
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--slate-300);
+}
+
+.footer-contact-item svg {
+  color: #34d399;
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  color: var(--slate-400);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 1.75rem;
+}
+
+.footer-legal-links a {
+  color: var(--slate-400);
+}
+
+.footer-legal-links a:hover {
+  color: #34d399;
+}
+
+/* --------------------------------------------------------------------------
+   18. Accessibility & Utilities
+   -------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
